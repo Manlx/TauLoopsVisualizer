@@ -172,7 +172,7 @@ namespace For_Loops
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(942, 402);
+            this.ClientSize = new System.Drawing.Size(942, 406);
             this.Controls.Add(this.edtLimit);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbbInc);
