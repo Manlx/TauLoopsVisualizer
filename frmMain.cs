@@ -40,14 +40,6 @@ namespace For_Loops
         private void btnMapForLoop_Click(object sender, EventArgs e)
         {
             redForMapOut.Clear();
-            /*Func<int, int> myFunc = x => { return x * x * x; };
-MessageBox.Show(myFunc(10).ToString());*/
-            /*
-            <
-            >
-            <=
-            >=
-             */
             ComparisonOperatorPointer myFunc = null;
             switch (cbbOperator.SelectedIndex)
             {
@@ -67,7 +59,7 @@ MessageBox.Show(myFunc(10).ToString());*/
                 redForMapOut.Text += $"{x + Change}: For loop executes\n";
                 LoopExecution++;
             }
-            redForMapOut.Text += $"The loop executed: {LoopExecution} times\nWhere the comparsion executed: {ComparisonExecution} times";
+            redForMapOut.Text += $"\nThe loop executed: {LoopExecution} times\nWhere the comparsion executed: {ComparisonExecution} times";
         }
         private bool Smaller(int x, int y)
         {
@@ -85,8 +77,6 @@ MessageBox.Show(myFunc(10).ToString());*/
         {
             return x >= y;
         }
-        
-
         private void Inc(ref int x)
         {
             x++;
@@ -95,40 +85,33 @@ MessageBox.Show(myFunc(10).ToString());*/
         {
             x--;
         }
-
         private void edtStart_TextChanged(object sender, EventArgs e)
         {
             if (!Int32.TryParse(edtStart.Text, out Start) && edtStart.Text != "")
                 MessageBox.Show("Please enter a number");
             SimulateLable();
         }
-
         private void edtChange_TextChanged(object sender, EventArgs e)
         {
             if (!Int32.TryParse(edtChange.Text, out Change) && edtChange.Text != "" && edtChange.Text != "-")
                 MessageBox.Show("Please enter a number");
             SimulateLable();
         }
-
         private void edtLimit_TextChanged(object sender, EventArgs e)
         {
             if (!Int32.TryParse(edtLimit.Text, out Limit) && edtLimit.Text != "")
                 MessageBox.Show("Please enter a number");
             SimulateLable();
         }
-
         private void cbbOperator_SelectionChangeCommitted(object sender, EventArgs e)
         {
             SimulateLable();
         }
-
         private void frmForLoop_Load(object sender, EventArgs e)
         {
             cbbOperator.SelectedIndex = 0;
             cbbInc.SelectedIndex = 0;
             SimulateLable();
-
-            
         }
         private void SimulateLable()
         {
