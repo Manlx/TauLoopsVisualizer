@@ -23,6 +23,7 @@ namespace For_Loops
         //private delegate bool CompletePartB(ComparisonOperatorPointer x, SayThing y);
 
         private int Limit = 0, Start = 0, Change = 0;
+        static int LoopExecution = 0, ComparisonExecution = 0;
 
         private bool Help(ComparisonOperatorPointer x, int a, int b, SayThing y)
         {
@@ -35,10 +36,12 @@ namespace For_Loops
             redForMapOut.Text += $"Executing Comparison operartion\n";
             ComparisonExecution++;
         }
-        static int LoopExecution = 0, ComparisonExecution= 0;
+        
 
         private void btnMapForLoop_Click(object sender, EventArgs e)
         {
+            LoopExecution = 0;
+            ComparisonExecution = 0;
             redForMapOut.Clear();
             ComparisonOperatorPointer myFunc = null;
             switch (cbbOperator.SelectedIndex)
