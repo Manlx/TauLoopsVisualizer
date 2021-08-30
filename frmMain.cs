@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//By Manuel A Nunes
 namespace For_Loops
 {
     public partial class frmForLoop : Form
@@ -24,7 +17,6 @@ namespace For_Loops
 
         private int iLimit = 0, iLimitChange = 0, iStart = 0,iStartChange = 0, iIterChange = 0;
         static int LoopExecution = 0, ComparisonExecution = 0;
-
         private bool Help(ComparisonOperatorPointer x, int a, int b, SayThing y)
         {
             
@@ -40,6 +32,11 @@ namespace For_Loops
 
         private void btnMapForLoop_Click(object sender, EventArgs e)
         {
+            if (CheckForInfinite())
+            {
+                MessageBox.Show("There will be an Infinite loop and thus the program will not continue");
+                return;
+            }
             LoopExecution = 0;
             ComparisonExecution = 0;
             redForMapOut.Clear();
@@ -62,9 +59,10 @@ namespace For_Loops
                 redForMapOut.Text += $"{LoopExecution}: For loop executes\n";
                 LoopExecution++;
             }
+            int iBPartExecute = ComparisonExecution - ((cbbOperator.SelectedIndex % 2 == 0) ? iLimit : iStart);
             redForMapOut.Text += $"\nThe loop executed: {LoopExecution} times\nWhere the comparsion executed: {ComparisonExecution} times\n\n";
-            redForMapOut.Text += $"The comparison is (N{WhatToReturn(ComparisonExecution - iLimit) }) times\n" +
-                $"The Loop is executed (N{WhatToReturn(ComparisonExecution - iLimit -1)}) times\n";
+            redForMapOut.Text += $"The comparison is (N{WhatToReturn(iBPartExecute)}) times\n" +
+                $"The Loop is executed (N{WhatToReturn(iBPartExecute - 1)}) times\n";
         }
         private bool Smaller(int x, int y)
         {
@@ -125,7 +123,23 @@ namespace For_Loops
         }
         private void cbbOperator_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            AlertInfLoop();
             SimulateLable();
+        }
+        private void AlertInfLoop()
+        {
+            if (CheckForInfinite())
+                MessageBox.Show("An Infinite Loop will take place");
+        }
+        private bool CheckForInfinite()
+        {
+            bool temp = (cbbOperator.SelectedIndex % 2 == 0);
+            switch (cbbInc.SelectedIndex)
+            {
+                case 0:  return !temp;
+                case 1:  return temp;
+                default: return false;
+            }
         }
         private void frmForLoop_Load(object sender, EventArgs e)
         {

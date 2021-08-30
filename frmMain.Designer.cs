@@ -50,6 +50,7 @@ namespace For_Loops
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // redForMapOut
@@ -71,10 +72,10 @@ namespace For_Loops
             // 
             // btnMapForLoop
             // 
-            this.btnMapForLoop.Location = new System.Drawing.Point(456, 354);
+            this.btnMapForLoop.Location = new System.Drawing.Point(454, 354);
             this.btnMapForLoop.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnMapForLoop.Name = "btnMapForLoop";
-            this.btnMapForLoop.Size = new System.Drawing.Size(625, 53);
+            this.btnMapForLoop.Size = new System.Drawing.Size(633, 53);
             this.btnMapForLoop.TabIndex = 7;
             this.btnMapForLoop.Text = "Map For Loop";
             this.btnMapForLoop.UseVisualStyleBackColor = true;
@@ -263,12 +264,23 @@ namespace For_Loops
             this.label10.Size = new System.Drawing.Size(0, 19);
             this.label10.TabIndex = 27;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(872, 198);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 19);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "N";
+            // 
             // frmForLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1082, 406);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
@@ -323,6 +335,7 @@ namespace For_Loops
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label2;
     }
 }
 
