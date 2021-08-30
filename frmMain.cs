@@ -22,7 +22,7 @@ namespace For_Loops
         private delegate void SayThing();
         //private delegate bool CompletePartB(ComparisonOperatorPointer x, SayThing y);
 
-        private int Limit = 0, Start = 0, Change = 0;
+        private int iLimit = 0, iLimitChange = 0, iStart = 0,iStartChange = 0, iIterChange = 0;
         static int LoopExecution = 0, ComparisonExecution = 0;
 
         private bool Help(ComparisonOperatorPointer x, int a, int b, SayThing y)
@@ -31,7 +31,7 @@ namespace For_Loops
             y();
             return x(a,b);
         }
-        private void CallMeDaddy()
+        private void AlertExecution()
         {
             redForMapOut.Text += $"Executing Comparison operartion\n";
             ComparisonExecution++;
@@ -57,12 +57,14 @@ namespace For_Loops
                 myOp = Inc;
             else
                 myOp = Dec;
-            for (int x = Start; Help(myFunc,(x+Change),Limit, CallMeDaddy); myOp(ref x))
+            for (int x = iStart+iStartChange; Help(myFunc,(x + iIterChange),(iLimit+iLimitChange), AlertExecution); myOp(ref x))
             {
-                redForMapOut.Text += $"{x + Change}: For loop executes\n";
+                redForMapOut.Text += $"{LoopExecution}: For loop executes\n";
                 LoopExecution++;
             }
-            redForMapOut.Text += $"\nThe loop executed: {LoopExecution} times\nWhere the comparsion executed: {ComparisonExecution} times";
+            redForMapOut.Text += $"\nThe loop executed: {LoopExecution} times\nWhere the comparsion executed: {ComparisonExecution} times\n\n";
+            redForMapOut.Text += $"The comparison is (N{WhatToReturn(ComparisonExecution - iLimit) }) times\n" +
+                $"The Loop is executed (N{WhatToReturn(ComparisonExecution - iLimit -1)}) times\n";
         }
         private bool Smaller(int x, int y)
         {
@@ -90,19 +92,34 @@ namespace For_Loops
         }
         private void edtStart_TextChanged(object sender, EventArgs e)
         {
-            if (!Int32.TryParse(edtStart.Text, out Start) && edtStart.Text != "")
+            if (!Int32.TryParse(edtStart.Text, out iStart) && edtStart.Text != "" && edtStart.Text != "-")
                 MessageBox.Show("Please enter a number");
             SimulateLable();
         }
         private void edtChange_TextChanged(object sender, EventArgs e)
         {
-            if (!Int32.TryParse(edtChange.Text, out Change) && edtChange.Text != "" && edtChange.Text != "-")
+            if (!Int32.TryParse(edtChange.Text, out iIterChange) && edtChange.Text != "" && edtChange.Text != "-")
                 MessageBox.Show("Please enter a number");
             SimulateLable();
         }
+
+        private void edtStartChange_TextChanged(object sender, EventArgs e)
+        {
+            if (!Int32.TryParse(edtStartChange.Text, out iStartChange) && edtStartChange.Text != "" && edtStartChange.Text != "-")
+                MessageBox.Show("Please enter a number");
+            SimulateLable();
+        }
+
+        private void edtLimitChange_TextChanged(object sender, EventArgs e)
+        {
+            if (!Int32.TryParse(edtLimitChange.Text, out iLimitChange) && edtLimitChange.Text != "" && edtLimitChange.Text != "-")
+                MessageBox.Show("Please enter a number");
+            SimulateLable();
+        }
+
         private void edtLimit_TextChanged(object sender, EventArgs e)
         {
-            if (!Int32.TryParse(edtLimit.Text, out Limit) && edtLimit.Text != "")
+            if (!Int32.TryParse(edtLimit.Text, out iLimit) && edtLimit.Text != "")
                 MessageBox.Show("Please enter a number");
             SimulateLable();
         }
@@ -114,11 +131,23 @@ namespace For_Loops
         {
             cbbOperator.SelectedIndex = 0;
             cbbInc.SelectedIndex = 0;
+            redForMapOut.ReadOnly = true;
             SimulateLable();
+        }
+        private static string WhatToReturn(int x)
+        {
+            if (x == 0)
+                return "";
+            if (x > 0)
+                return " + " + x;
+            return x.ToString();
         }
         private void SimulateLable()
         {
-            lblVisual.Text = $"for (int x = {Start}; x {((Change== 0)? "" : ((Change > 0) ? "+"+Change.ToString():Change.ToString()))} {cbbOperator.Text} {Limit}; {cbbInc.Text})";
+            lblVisual.Text = $"for (int X = {iStart}{WhatToReturn(iStartChange)};" +
+                $"(X{WhatToReturn(iIterChange)})" +
+                $" {cbbOperator.Text} " +
+                $"({iLimit}{WhatToReturn(iLimitChange)}); {cbbInc.Text})";
         }
     }
 }
