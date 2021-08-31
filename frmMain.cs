@@ -33,7 +33,7 @@ namespace For_Loops
         private void btnMapForLoop_Click(object sender, EventArgs e)
         {
             if (CheckForInfinite())
-            {
+            {//If there is an infinite loop detected it fails 
                 MessageBox.Show("There will be an Infinite loop and thus the program will not continue");
                 return;
             }
